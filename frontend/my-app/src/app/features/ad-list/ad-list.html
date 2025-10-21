@@ -1,0 +1,9 @@
+<div *ngFor="let ad of ads" class="ad-card">
+  <h3>{{ ad.title }}</h3>
+  <p>{{ ad.description }}</p>
+  <p>Category: {{ ad.category }} | Price: {{ ad.price }} | Location: {{ ad.location }}</p>
+  <p *ngIf="ad.contact_info">Contact: {{ ad.contact_info }}</p>
+  <div *ngIf="ad.images">
+    <img *ngFor="let img of ad.images" [src]="'http://localhost:8000/images/' + img.filename" width="100" />
+  </div>
+</div>

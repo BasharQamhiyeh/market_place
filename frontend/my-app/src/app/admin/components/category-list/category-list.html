@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="categories" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let c"> {{ c.id }} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let c"> {{ c.name }} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let c">
+      <button mat-button color="primary" (click)="openCategory(c)">View / Edit</button>
+      <button mat-icon-button color="accent" (click)="editCategory(c)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteCategory(c)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Inline Create Form -->
+<form [formGroup]="createForm" (ngSubmit)="addCategory()">
+  <mat-form-field appearance="outline">
+    <mat-label>New Category Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit">Add Category</button>
+</form>

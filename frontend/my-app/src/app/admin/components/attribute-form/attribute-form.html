@@ -1,0 +1,22 @@
+<!-- src/app/admin/components/attribute-form/attribute-form.component.html -->
+<h2 mat-dialog-title>{{ data?.attribute ? 'Edit Attribute' : 'Add attribute' }}</h2>
+<form [formGroup]="form" style="padding:16px">
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Attribute name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Input type</mat-label>
+    <mat-select formControlName="input_type">
+      <mat-option *ngFor="let opt of inputTypeOptions" [value]="opt.value">{{ opt.label }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="is_required">Required</mat-checkbox>
+
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
+  </div>
+</form>

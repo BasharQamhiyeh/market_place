@@ -1,0 +1,25 @@
+{
+  "BUTTON": {
+    "LOGIN": "تسجيل الدخول",
+    "REGISTER": "تسجيل",
+    "LOGOUT": "تسجيل الخروج",
+    "ADMIN_PANEL": "لوحة الإدارة",
+    "ADD_ITEM": "إضافة إعلان",
+    "SEARCH": "بحث",
+    "APPLY_FILTERS": "تطبيق الفلاتر",
+    "NEXT": "التالي"
+  },
+  "LABEL": {
+    "PRICE_RANGE": "نطاق السعر",
+    "PAGE": "صفحة"
+  },
+  "MESSAGE": {
+    "NO_ITEMS_FOUND": "لا توجد عناصر"
+  },
+  "PLACEHOLDER": {
+    "SEARCH": "ابحث عن الإعلانات...",
+    "MIN_PRICE": "أدنى سعر",
+    "MAX_PRICE": "أقصى سعر"
+  },
+  "TITLE": "تطبيقي"
+}

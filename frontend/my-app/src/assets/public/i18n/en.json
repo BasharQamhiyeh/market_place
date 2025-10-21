@@ -1,0 +1,25 @@
+{
+  "BUTTON": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "LOGOUT": "Logout",
+    "ADMIN_PANEL": "Admin Panel",
+    "ADD_ITEM": "Add Announcement",
+    "SEARCH": "Search",
+    "APPLY_FILTERS": "Apply Filters",
+    "NEXT": "Next"
+  },
+  "LABEL": {
+    "PRICE_RANGE": "Price Range",
+    "PAGE": "Page"
+  },
+  "MESSAGE": {
+    "NO_ITEMS_FOUND": "No items found"
+  },
+  "PLACEHOLDER": {
+    "SEARCH": "Search for announcements...",
+    "MIN_PRICE": "Min price",
+    "MAX_PRICE": "Max price"
+  },
+  "TITLE": "My App"
+}

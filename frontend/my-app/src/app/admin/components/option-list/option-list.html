@@ -1,0 +1,26 @@
+<!-- src/app/admin/components/option-list/option-list.component.html -->
+<h2 style="margin:0;padding:16px 16px 0 16px">Options for: {{ attribute.name }}</h2>
+
+<div style="padding: 16px">
+  <mat-list>
+    <mat-list-item *ngFor="let opt of options">
+      <div matLine>{{ opt.value }}</div>
+      <div style="margin-left:auto">
+        <button mat-icon-button color="warn" (click)="deleteOpt(opt)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+
+  <form [formGroup]="addForm" style="display:flex;gap:8px;margin-top:12px">
+    <mat-form-field appearance="outline" style="flex:1">
+      <mat-label>New option</mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="add()" type="button" [disabled]="addForm.invalid">Add</button>
+  </form>
+
+  <div style="display:flex;justify-content:flex-end;margin-top:12px">
+    <button mat-button (click)="close()">Close</button>
+  </div>
+</div>

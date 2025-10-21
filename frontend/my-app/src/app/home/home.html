@@ -1,0 +1,92 @@
+<div class="home-container">
+  <!-- Top bar -->
+  <header class="header">
+    <h1>{{ 'TITLE' | translate }}</h1>
+    <button (click)="goToAddItem()" *ngIf="isLoggedIn">
+      {{ 'BUTTON.ADD_ITEM' | translate }}
+    </button>
+  </header>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchChange()"
+      placeholder="{{ 'PLACEHOLDER.SEARCH' | translate }}"
+    />
+    <button mat-icon-button (click)="toggleFiltersPanel()">
+      <mat-icon>filter_list</mat-icon>
+    </button>
+  </div>
+
+  <!-- Filters Panel -->
+  <div class="filters-panel" *ngIf="showFilters">
+    <h3>{{ 'BUTTON.FILTER' | translate }}</h3>
+    <form>
+      <label>
+        {{ 'LABEL.PRICE_RANGE' | translate }}:
+        <input type="number" placeholder="{{ 'PLACEHOLDER.MIN_PRICE' | translate }}" [(ngModel)]="minPrice" />
+        -
+        <input type="number" placeholder="{{ 'PLACEHOLDER.MAX_PRICE' | translate }}" [(ngModel)]="maxPrice" />
+      </label>
+
+      <button type="button" (click)="applyFilters()">
+        {{ 'BUTTON.APPLY_FILTERS' | translate }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Items List -->
+  <section class="items-list">
+    <!-- Empty State -->
+    <div *ngIf="items.length === 0" class="no-items">
+      {{ 'MESSAGE.NO_ITEMS_FOUND' | translate }}
+    </div>
+
+    <!-- Item Card -->
+    <div *ngFor="let item of items" class="item-card" (click)="item.id ? goToItem(item.id) : null">
+      
+       <!-- Photos -->
+      <div class="photo-slider" *ngIf="item.photos && item.photos.length > 0">
+        <div *ngFor="let photo of item.photos.slice(0, 1)" class="photo">
+          <img [src]="photo.url" alt="Item Photo" />
+        </div>
+      </div>
+
+      <!-- Main Info -->
+      <div class="item-info">
+        <h3 class="item-title">{{ item.title }}</h3>
+        <p class="item-price">{{ item.price | currency }}</p>
+        <p class="item-description">{{ item.description | slice:0:60 }}...</p>
+      </div>
+
+      <!-- Attributes preview -->
+      <div class="item-attributes" *ngIf="item.attribute_values?.length">
+        <span *ngFor="let attr of item.attribute_values?.slice(0, 2)">
+        <strong>{{ attr.attribute_name }}:</strong> {{ attr.value }}
+      </span>
+      </div>
+
+      <!-- Owner / Date -->
+      <div class="item-meta">
+        <span class="item-owner">{{ item.owner?.username }}</span>
+        <span class="item-date">{{ item.created_at | date:'shortDate' }}</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Pagination -->
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      {{ 'Previous' | translate }}
+    </button>
+
+    <span>{{ 'LABEL.PAGE' | translate }} {{ currentPage }}</span>
+
+    <button (click)="nextPage()" [disabled]="!hasMoreItems">
+      {{ 'BUTTON.NEXT' | translate }}
+    </button>
+  </div>
+</div>

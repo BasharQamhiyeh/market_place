@@ -1,0 +1,61 @@
+<mat-card *ngIf="item as currentItem" class="item-card">
+    <mat-card-header>
+        <mat-card-title>Item Details</mat-card-title>
+        <mat-card-subtitle>{{ currentItem.category?.name || 'Category' }}</mat-card-subtitle>
+    </mat-card-header>
+
+  <mat-card-content>
+
+    <!-- Price -->
+    <p class="price"><strong>Price:</strong> {{ currentItem.price | currency }}</p>
+
+    <!-- Attributes -->
+    <div *ngIf="currentItem.attribute_values as attrs; else noAttributes" class="attributes">
+        <h4>Attributes</h4>
+        <ul>
+            <li *ngFor="let attr of attrs">
+            <strong>{{ attr.attribute_name }}:</strong> {{ attr.value }}
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #noAttributes>
+        <p>No attributes available.</p>
+    </ng-template>
+
+    <!-- Description -->
+    <p class="description">{{ currentItem.description }}</p>
+
+    <!-- Photos Slider -->
+    <div *ngIf="currentItem.photos as photos; else noPhotos" class="photo-slider-container">
+        <h4>Photos</h4>
+        <div class="photo-slider">
+            <div
+            class="slide"
+            *ngFor="let photo of photos; let i = index"
+            [class.active]="i === currentSlide"
+            >
+            <img [src]="photo.url" alt="Item Photo" />
+            </div>
+
+            <!-- Controls -->
+            <button class="prev" mat-icon-button (click)="prevSlide()">
+            <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button class="next" mat-icon-button (click)="nextSlide()">
+            <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <ng-template #noPhotos>
+        <p>No photos available.</p>
+    </ng-template>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="editItem()">Edit</button>
+    <button mat-raised-button color="warn" (click)="deleteItem()">Delete</button>
+  </mat-card-actions>
+</mat-card>

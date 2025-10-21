@@ -1,0 +1,126 @@
+<div class="page-wrapper">
+  <!-- Top Bar -->
+  <mat-toolbar color="primary" class="top-bar">
+    <div class="left-section">
+      <div class="auth-buttons">
+        <button mat-button *ngIf="!isLoggedIn" (click)="openLogin()">{{ 'BUTTON.LOGIN' | translate }}</button>
+        <button mat-button *ngIf="!isLoggedIn" (click)="openRegister()">{{ 'BUTTON.REGISTER' | translate }}</button>
+        <button mat-button *ngIf="isLoggedIn" (click)="logout()">{{ 'BUTTON.LOGOUT' | translate }}</button>
+        <button mat-button *ngIf="isLoggedIn && isAdmin" (click)="goToAdminPage()">{{ 'BUTTON.ADMIN_PANEL' | translate }}</button>
+      </div>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="right-section">
+      <div class="language-selector">
+        <mat-select [value]="currentLang" (selectionChange)="onLanguageChange($event)">
+          <mat-option value="en">English</mat-option>
+          <mat-option value="ar">العربية</mat-option>
+        </mat-select>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <!-- Login Panel -->
+  <mat-card class="login-panel" *ngIf="showLogin">
+    <mat-card-title>{{ 'LOGIN.TITLE' | translate }}</mat-card-title>
+    <mat-card-content>
+      <form (submit)="login($event)">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'LOGIN.USERNAME' | translate }}</mat-label>
+          <input matInput type="text" name="username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+          <input matInput type="password" name="password" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">{{ 'BUTTON.LOGIN' | translate }}</button>
+        <button mat-button type="button" (click)="closePanels()">{{ 'BUTTON.CLOSE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Register Panel -->
+  <mat-card class="register-panel" *ngIf="showRegister">
+    <mat-card-title>{{ 'REGISTER.TITLE' | translate }}</mat-card-title>
+    <mat-card-content>
+      <form (submit)="register($event)">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'REGISTER.USERNAME' | translate }}</mat-label>
+          <input matInput type="text" name="username" required [(ngModel)]="reg.username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'REGISTER.PHONE' | translate }}</mat-label>
+          <input matInput type="tel" name="phone" required pattern="[0-9]{8,15}" [(ngModel)]="reg.phone" (input)="validatePhone()" />
+          <mat-error *ngIf="phoneError">{{ phoneError }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'REGISTER.EMAIL' | translate }}</mat-label>
+          <input matInput type="email" name="email" placeholder="Optional" [(ngModel)]="reg.email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'REGISTER.PASSWORD' | translate }}</mat-label>
+          <input matInput type="password" name="password" required [(ngModel)]="reg.password" (input)="validatePasswords()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
+          <input matInput type="password" name="confirmPassword" required [(ngModel)]="reg.confirmPassword" (input)="validatePasswords()" />
+          <mat-error *ngIf="passwordError">{{ passwordError }}</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="passwordError || phoneError">{{ 'BUTTON.REGISTER' | translate }}</button>
+        <button mat-button type="button" (click)="closePanels()">{{ 'BUTTON.CLOSE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Main Layout -->
+  <div class="main-container">
+    <!-- Left Ads Panel -->
+    <aside class="ads-panel left-ads">
+      <mat-card>
+        <mat-card-title>{{ 'Sponsored Ads' | translate }}</mat-card-title>
+        <mat-card-content>
+          <div *ngFor="let ad of ads" class="ad">
+            <img [src]="ad.imageUrl" alt="Ad Image" />
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Right Ads Panel -->
+    <aside class="ads-panel right-ads">
+      <mat-card>
+        <mat-card-title>{{ 'Sponsored Ads' | translate }}</mat-card-title>
+        <mat-card-content>
+          <div *ngFor="let ad of ads" class="ad">
+            <img [src]="ad.imageUrl" alt="Ad Image" />
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </aside>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+    <nav class="footer-links">
+      <a routerLink="/about">About Us</a>
+      <a routerLink="/contact">Contact</a>
+      <a routerLink="/privacy-policy">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
