@@ -1,7 +1,8 @@
 # app/elastic.py
 from elasticsearch import Elasticsearch
+import os
 
-ES_HOST = "http://localhost:9200"
+ES_HOST = os.environ.get('ELASTICSEARCH_URL', 'http://localhost:9200')
 es = Elasticsearch(ES_HOST)
 ITEM_INDEX = "items"
 
