@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
-from ..utils.auth import require_admin
-from ..database import get_db
-from ..crud import categories as crud_categories
-from ..schemas.categories import (
+from utils.auth import require_admin
+from database import get_db
+from crud import categories as crud_categories
+from schemas.categories import (
     CategoryCreate,
     CategoryRead,
     AttributeCreate,

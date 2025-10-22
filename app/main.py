@@ -5,14 +5,14 @@ from datetime import timedelta
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 
-from .utils import auth
-from .endpoints.auth import router as auth_router
-from .endpoints.items import router as items_router
-from .endpoints.categories import router as categories_router
-from .models import categories, items, users
-from .database import engine, Base, get_db
+from utils import auth
+from endpoints.auth import router as auth_router
+from endpoints.items import router as items_router
+from endpoints.categories import router as categories_router
+from models import categories, items, users
+from database import engine, Base, get_db
 from fastapi.staticfiles import StaticFiles
-from .utils.elastic import create_item_index
+from utils.elastic import create_item_index
 
 app = FastAPI()
 

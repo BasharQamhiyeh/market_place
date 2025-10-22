@@ -4,12 +4,12 @@ from sqlalchemy.orm import selectinload, joinedload
 from fastapi import HTTPException, BackgroundTasks
 from datetime import datetime
 import uuid
-from ..utils.elastic import es, ITEM_INDEX, index_item
+from utils.elastic import es, ITEM_INDEX, index_item
 
 
-from ..schemas.items import ItemCreate, ItemUpdate
-from ..models.items import Item, ItemAttributeValue, Photo
-from ..utils.storage import LocalStorageService
+from schemas.items import ItemCreate, ItemUpdate
+from models.items import Item, ItemAttributeValue, Photo
+from utils.storage import LocalStorageService
 
 storage_service = LocalStorageService()
 

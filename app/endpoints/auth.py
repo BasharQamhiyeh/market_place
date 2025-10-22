@@ -3,10 +3,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordRequestForm
 
-from ..utils import auth
-from ..database import get_db
-from ..schemas.auth import *
-from ..crud.users import *
+from utils import auth
+from database import get_db
+from schemas.auth import *
+from crud.users import *
 
 router = APIRouter()
 

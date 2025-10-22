@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from ..database import Base
-from .items import Item
+from database import Base
+from models.items import Item
 from pydantic import BaseModel
 
 

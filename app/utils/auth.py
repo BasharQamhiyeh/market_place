@@ -13,8 +13,8 @@ from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..database import get_db
-from ..models.users import User, TokenUser
+from database import get_db
+from models.users import User, TokenUser
 
 
 SECRET_KEY = "supersecretkey"  # replace in prod

@@ -5,8 +5,8 @@ from sqlalchemy.orm import selectinload
 from fastapi import HTTPException
 from typing import List
 
-from ..models.categories import *
-from ..schemas.categories import *
+from models.categories import *
+from schemas.categories import *
 
 
 # -----------------------------

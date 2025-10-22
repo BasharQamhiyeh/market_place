@@ -3,13 +3,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 import json
 
-from ..database import get_db
-from .. import schemas
-from ..crud import items as crud_items
-from ..utils.auth import get_current_user_from_token, get_optional_current_user
-from ..schemas.items import *
-from ..models.users import User, TokenUser
-from ..utils.elastic import search_items
+from database import get_db
+from schemas import * 
+from crud import items as crud_items
+from utils.auth import get_current_user_from_token, get_optional_current_user
+from schemas.items import *
+from models.users import User, TokenUser
+from utils.elastic import search_items
 
 
 router = APIRouter()

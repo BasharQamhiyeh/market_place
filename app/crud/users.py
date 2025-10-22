@@ -1,10 +1,10 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
-from ..utils import auth
+from utils import auth
 
-from ..models import users
-from ..schemas import auth as schemas
+from models import users
+from schemas import auth as schemas
 
 async def create_user(db: AsyncSession, user: schemas.UserCreate):
     hashed = auth.hash_password(user.password)

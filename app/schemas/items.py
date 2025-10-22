@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
-from .auth import UserOut
+from schemas.auth import UserOut
 
 # ---------------------
 # Item Attribute schemas
